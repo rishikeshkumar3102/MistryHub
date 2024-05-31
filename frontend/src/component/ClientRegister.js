@@ -32,7 +32,7 @@ function ClientForm() {
       alert("Please enter your password");
     } else {
       axios
-        .post("https://mistry-hub-api.vercel.app/api/client/clientRegister", {
+        .post("/api/client/clientRegister", {
           name: workerInfo.name,
           contactNumber: workerInfo.contactNumber,
           address: workerInfo.address,

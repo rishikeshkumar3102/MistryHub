@@ -1,5 +1,5 @@
 import "./style.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -28,36 +28,36 @@ function Login() {
       alert("Please enter your Password");
     } else {
       axios
-      .post("http://localhost:8080/api/client/clientLogin", {
-        email: workerInfo.email,
-        password: workerInfo.password,
-      })
-      .then(function (response) {
-        if (response.data.error) {
-          // Handle authentication errors
-          if (response.data.error === "Authentication has failed!") {
-            alert("Authentication has failed! Incorrect password.");
-          } else if (response.data.error === "No client found!") {
-            alert("No client found with such email.");
+        .post("https://mistry-hub-frontend.vercel.app/", {
+          email: workerInfo.email,
+          password: workerInfo.password,
+        })
+        .then(function (response) {
+          if (response.data.error) {
+            // Handle authentication errors
+            if (response.data.error === "Authentication has failed!") {
+              alert("Authentication has failed! Incorrect password.");
+            } else if (response.data.error === "No client found!") {
+              alert("No client found with such email.");
+            } else {
+              alert("An error occurred during authentication.");
+            }
           } else {
-            alert("An error occurred during authentication.");
+            // Login successful
+            alert("Login Successful");
+            console.log(response);
+            localStorage.setItem("clientToken", response.data.clientToken);
+            localStorage.setItem("isClientLoggedIn", true);
+            localStorage.setItem("clientId", response.data.clientId);
+            navigate("/clientDashboard");
+            console.log(response.data);
           }
-        } else {
-          // Login successful
-          alert("Login Successful");
-          console.log(response);
-          localStorage.setItem("clientToken", response.data.clientToken);
-          localStorage.setItem("isClientLoggedIn", true);
-          localStorage.setItem("clientId", response.data.clientId);
-          navigate("/clientDashboard");
-          console.log(response.data);
-        }
-      })
-      .catch(function (error) {
-        console.log("The error is", error);
-        // Handle other errors
-        alert("An error occurred during the login process.");
-      });
+        })
+        .catch(function (error) {
+          console.log("The error is", error);
+          // Handle other errors
+          alert("An error occurred during the login process.");
+        });
       setWorkerInfo({
         email: "",
         password: "",
@@ -99,7 +99,7 @@ function Login() {
               <h2 style={{ width: "100%" }}>Submit</h2>
             </button>
           </form>
-          <div className='text-footer'>
+          <div className="text-footer">
             <Link to="/clientRegister" style={{ textDecoration: "none" }}>
               {" "}
               <h4>Not a user Register</h4>

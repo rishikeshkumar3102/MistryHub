@@ -1,10 +1,18 @@
 {
-  "version": 2,
-  "builds": [{ "src": ".js", "use": "@vercel/node" }],
-  "routes": [
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "/"
+      "source": "/api/client/clientRegister",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://mistry-hub-frontend.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, OPTIONS"
+        },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
     }
   ]
 }

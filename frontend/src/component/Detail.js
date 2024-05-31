@@ -9,7 +9,7 @@ function Details() {
   const [workerInfo, setWorkerInfo] = useState([]);
   const handleClick = () => {
     axios
-      .get(`http://localhost:8080/api/detail/${category}`)
+      .get(`https://mistry-hub-api.vercel.app/api/detail/${category}`)
       .then(function (response) {
         setWorkerInfo(response.data);
       });

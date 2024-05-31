@@ -6,7 +6,7 @@ import "./clientDashboard.css";
 import ClientBookings from "./Booking";
 import ViewProfile from "./UserProfile";
 
-const Sidebar = ({ handleOptionClick, selectedOption, clientDetails }) => {
+const Sidebar = ({ handleOptionClick, selectedOption ,clientDetails}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -80,7 +80,7 @@ const Sidebar = ({ handleOptionClick, selectedOption, clientDetails }) => {
   );
 };
 
-const Content = ({ selectedOption, clientDetails, updateRating }) => {
+const Content = ({ selectedOption, clientDetails,updateRating }) => {
   const clientId = localStorage.getItem("clientId");
   const [clientBookings, setClientBookings] = useState([]);
   const fetchClientBookings = async (status) => {
@@ -108,7 +108,8 @@ const Content = ({ selectedOption, clientDetails, updateRating }) => {
       fetchClientBookings("completed");
     } else if (selectedOption === "Option 6") {
       fetchClientBookings("pending");
-    } else if (selectedOption === "Option 7") {
+    }
+    else if (selectedOption === "Option 7") {
       fetchClientBookings("declined");
     }
   }, [selectedOption]);
@@ -134,7 +135,7 @@ const Content = ({ selectedOption, clientDetails, updateRating }) => {
           updateRating={updateRating}
           isWorker={false}
         />
-      ) : selectedOption === "Option 7" ? (
+      ): selectedOption === "Option 7" ? (
         <ClientBookings
           typeofRequest={"Declined Requests"}
           bookingDetails={clientBookings}
@@ -169,23 +170,25 @@ function ClientDashboard() {
       navigate("/clientLogin");
     }
   };
-  const updateRating = async (bookingId, ratingValue) => {
-    try {
-      const response = await axios.post(
+  const updateRating=async (bookingId,ratingValue) =>{
+    try{
+      const response=await axios.post(
         "https://mistry-hub-api.vercel.app/api/booking/updateRating",
-        null,
+        null, 
         {
           params: {
             bookingId: bookingId,
-            ratingValue: ratingValue,
+            ratingValue:ratingValue,
           },
         }
+       
+
       );
       // console.log(response.data);
-    } catch (error) {
+    } catch(error){
       console.log("Error updating rating:", error);
     }
-  };
+  }
 
   useEffect(() => {
     if (clientToken === null || isClientLoggedIn === null) {

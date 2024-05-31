@@ -32,7 +32,11 @@ function ClientForm() {
       alert("Please enter your password");
     } else {
       axios
+<<<<<<< HEAD
         .post("https://mistry-hub-api.vercel.app/api/client/clientRegister", {
+=======
+        .post("https://mistry-hub-frontend.vercel.app/api/client/clientRegister", {
+>>>>>>> 4cd60ec67b83ff88e4be7f342793bc4a56ef9bd1
           name: workerInfo.name,
           contactNumber: workerInfo.contactNumber,
           address: workerInfo.address,
@@ -145,7 +149,6 @@ function ClientForm() {
     </div>
   );
 }
-//Sansu123 and Sansu123
 
 function worker() {
   return (

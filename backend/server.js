@@ -3,7 +3,13 @@ const connectDB = require("./conifg/db");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://mistry-hub.vercel.app"],
+    methods: ["GET", "POST", "USE"],
+    credentials: true
+  })
+);
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.static("public"));

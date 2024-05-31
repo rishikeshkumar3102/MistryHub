@@ -9,7 +9,17 @@ import ClientDashboard from "./component/ClientDashboard";
 import WorkerDashboard from "./component/WorkerDashboard";
 import ClientRegister from "./component/ClientRegister";
 import ClientLogin from "./component/ClientLogin";
+import axios from "axios";
+
 function App() {
+  axios.defaults.withCredentials = true;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://mistry-hub.vercel.app/")
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <Routes>

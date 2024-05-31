@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(
   cors({
-    origin: ["https://mistry-hub.vercel.app"],
+    origin: ["https://mistry-hub-frontend.vercel.app/"],
     methods: ["GET", "POST", "USE"],
     credentials: true
   })

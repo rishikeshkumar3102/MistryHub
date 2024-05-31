@@ -5,9 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(
   cors({
-    origin: ["https://mistry-hub-frontend.vercel.app/"],
-    methods: ["GET", "POST", "USE"],
-    credentials: true
+    origin: ["https://mistry-hub-frontend.vercel.app/"]
   })
 );
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

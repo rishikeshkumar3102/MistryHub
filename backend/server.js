@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const corsOptions = {
-  origin: "https://mistry-hub-frontend.vercel.app/",
+  origin: "https://mistry-hub-frontend.vercel.app",
   methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
   allowedHeaders: [
     "Origin",
@@ -26,9 +26,12 @@ app.use(express.json());
 
 connectDB();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.setHeader(
+app.options("*", (req, res) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://mistry-hub-frontend.vercel.app"
+  );
+  res.header(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
@@ -36,7 +39,7 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
-  next();
+  res.sendStatus(200);
 });
 
 app.use("/api/worker", require("./routes/worker"));

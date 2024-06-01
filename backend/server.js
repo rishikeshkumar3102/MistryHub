@@ -13,7 +13,9 @@ const corsOptions = {
     "Content-Type",
     "Accept",
     "Authorization",
-  ],optionsSuccessStatus: 200,
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
@@ -29,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 connectDB();
+
+app.options('*', cors(corsOptions));
 
 app.use("/api/worker", require("./routes/worker"));
 app.use("/api/detail", require("./routes/detail"));

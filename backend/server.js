@@ -17,6 +17,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.get("/test-cors", (req, res) => {
+  res.send("CORS is enabled.");
+});
+
 
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
